@@ -12,34 +12,31 @@ sudo rm microsoft.gpg
 
 # Install and remove some compoments.
 sudo apt update -y
-sudo apt install -y vim git build-essential golang-go microsoft-edge-dev gedit fonts-roboto fonts-noto mesa-utils zip
+sudo apt install -y vim git build-essential microsoft-edge-dev gedit fonts-roboto fonts-noto mesa-utils zip neofetch
 sudo apt remove snapd -y
 git --version
 zip --version
 
-# Configure Go Proxy settings.
-go env -w GO111MODULE=on
-go env -w GOPROXY=https://goproxy.io,direct
-
-# Install powerline-go.
-go get -u github.com/justjanne/powerline-go
-
 # Configure powerline-go and .dircolors
+wget https://download.fastgit.org/justjanne/powerline-go/releases/download/v1.21.0/powerline-go-linux-amd64 -O ~/powerline-go
+chmod +x ~/powerline-go
+
 sudo cp ~/.bashrc ~/.bashrc.backup
 
 dircolors -p > ~/.dircolors
 sed --in-place 's/OTHER_WRITABLE 34;42/OTHER_WRITABLE 34;01/g' ~/.dircolors
 
-echo '# Powerling-go settings.
-GOPATH=$HOME/go
+echo '    
+# Powerling-go settings.
 function _update_ps1() {
-	PS1="$($GOPATH/bin/powerline-go -modules venv,user,host,ssh,cwd,perms,git,hg,jobs,exit,root,time -newline -error $?)"
+	PS1="$($HOME/powerline-go -modules venv,user,host,ssh,cwd,perms,git,hg,jobs,exit,root,time -newline -error $?)"
 }
 
-if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
+if [ "$TERM" != "linux" ] && [ -f "$HOME/powerline-go" ]; then
 	    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
+# dircolors configuration.
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
         alias ls="ls --color=auto"
@@ -57,11 +54,15 @@ cd ~/.nvm
 git checkout v0.38.0
 . ./nvm.sh
 
-echo 'export NVM_DIR="$HOME/.nvm"
+echo '    
+# nvm configuration.
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> ~/.bashrc
 
-echo 'export NVM_DIR="$HOME/.nvm"
+echo '    
+# nvm configuration.
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> ~/.profile
 
@@ -92,4 +93,4 @@ sudo add-apt-repository ppa:kisak/kisak-mesa
 sudo apt-get update -y && sudo apt dist-upgrade
 
 # Update Ubuntu to latest version.
-sudo do-release-upgrade
+echo All done! Now you can type [sudo do-release-upgrade], update Linux distro to latest version.
