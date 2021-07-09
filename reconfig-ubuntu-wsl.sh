@@ -47,6 +47,8 @@ if [ -x /usr/bin/dircolors ]; then
         alias egrep="egrep --color=auto"
 fi' >> ~/.bashrc
 
+source ~/.bashrc
+
 # Configure nvm (Node version manager).
 cd ~/
 git clone https://hub.fastgit.org/nvm-sh/nvm.git .nvm
