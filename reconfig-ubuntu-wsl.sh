@@ -95,4 +95,7 @@ sudo add-apt-repository ppa:kisak/kisak-mesa
 sudo apt-get update -y && sudo apt dist-upgrade
 
 # Update Ubuntu to latest version.
+source ~/.bashrc
+source ~/.profile
+
 echo All done! Now you can type [sudo do-release-upgrade], update Linux distro to latest version.
