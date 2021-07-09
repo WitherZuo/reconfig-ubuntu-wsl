@@ -17,10 +17,6 @@ sudo apt remove snapd -y
 git --version
 zip --version
 
-# Configure OpemGL renderer for WSLg.
-sudo add-apt-repository ppa:kisak/kisak-mesa
-sudo apt-get update -y
-
 # Configure Go Proxy settings.
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.io,direct
@@ -86,8 +82,14 @@ npm install yarn -g
 yarn -v
 yarn config set registry https://registry.npm.taobao.org
 
-# Update your Ubuntu distro to the latest non-LTS version.
+# Configure your Ubuntu distro to the latest non-LTS version update channel.
 sudo apt install update-manager-core -y
 sudo sed --in-place 's/Prompt=lts/Prompt=normal/g' /etc/update-manager/release-upgrades
 sudo apt update -y && sudo apt upgrade -y
+
+# Configure OpenGL renderer for WSLg.
+sudo add-apt-repository ppa:kisak/kisak-mesa
+sudo apt-get update -y && sudo apt dist-upgrade
+
+# Update Ubuntu to latest version.
 sudo do-release-upgrade
