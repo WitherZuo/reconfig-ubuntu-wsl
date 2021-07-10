@@ -21,7 +21,7 @@ zip --version
 wget https://download.fastgit.org/justjanne/powerline-go/releases/download/v1.21.0/powerline-go-linux-amd64 -O ~/powerline-go
 chmod +x ~/powerline-go
 
-sudo cp ~/.bashrc ~/.bashrc.backup
+cp ~/.bashrc ~/.bashrc.backup
 
 dircolors -p > ~/.dircolors
 sed --in-place 's/OTHER_WRITABLE 34;42/OTHER_WRITABLE 34;01/g' ~/.dircolors
@@ -94,9 +94,12 @@ sudo apt update -y && sudo apt upgrade -y
 sudo add-apt-repository ppa:kisak/kisak-mesa
 sudo apt-get update -y && sudo apt dist-upgrade
 
-# Update Ubuntu to latest version.
+# Some warnings.
+echo
+echo =================================================================================================
 echo To enable powerline-go, you may need to manually type [source ~/.bashrc] to reload .bashrc file.
 echo All done! Now you can type [sudo do-release-upgrade], update Linux distro to latest version.
+echo =================================================================================================
 
 source ~/.bashrc
 source ~/.profile
