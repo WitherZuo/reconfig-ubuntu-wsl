@@ -95,7 +95,7 @@ sudo add-apt-repository ppa:kisak/kisak-mesa
 sudo apt-get update -y && sudo apt dist-upgrade
 
 # Update Ubuntu to latest version.
-echo You may need to manually type [source ~/.bashrc] to reload .bashrc file.
+echo To enable powerline-go, you may need to manually type [source ~/.bashrc] to reload .bashrc file.
 echo All done! Now you can type [sudo do-release-upgrade], update Linux distro to latest version.
 
 source ~/.bashrc
