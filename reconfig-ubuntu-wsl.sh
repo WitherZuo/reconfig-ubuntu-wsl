@@ -95,6 +95,10 @@ if (whiptail --title "重要！需要您留意的事项" --yesno "该远程脚�
     sudo add-apt-repository ppa:kisak/kisak-mesa
     sudo apt-get update -y && sudo apt dist-upgrade
 
+    # Configure Startup Actions.
+    echo 'cd ~ && clear' >> ~/.bashrc
+    echo 'cd ~ && clear' >> ~/.profile
+
     source ~/.bashrc
     source ~/.profile
 else
