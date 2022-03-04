@@ -1,19 +1,13 @@
 #!/bin/bash
 
-if (whiptail --title "重要！需要您留意的事项" --yesno "该远程脚本将对您的 Ubuntu 实例进行开箱预先配置，具体来说，脚本执行完毕后，您的 Ubuntu 实例中将会被安装 Microsoft Edge Dev 网络浏览器和其它在脚本中已写明的组件，并配置和启用 Powerline 终端体验、Node 版本管理器、mesa 管理组件等内容，以及修改 Ubuntu 的更新通道为 normal。\n\n如果脚本执行完毕后终端并未自动刷新和加载 Powerline，您可以通过执行 [source ~/.bashrc] 手动加载（仅需执行一次）；\n\n在脚本执行完毕后，您可以通过执行 [sudo do-release-upgrade] 升级 Ubuntu 到更新版本。\n\n已经准备好了？请选中 [我已知晓] 继续，否则请选中 [暂不执行] 退出。" --yes-button "我已知晓" --no-button "暂不执行" --fullbuttons 20 90) then
+if (whiptail --title "重要！需要您留意的事项" --yesno "该远程脚本将对您的 Ubuntu 实例进行开箱预先配置，具体来说，脚本执行完毕后，您的 Ubuntu 实例中将会被安装在脚本中已写明的组件，并配置和启用 Powerline 终端体验、Node 版本管理器、mesa 管理组件等内容，以及修改 Ubuntu 的更新通道为 normal。\n\n如果脚本执行完毕后终端并未自动刷新和加载 Powerline，您可以通过执行 [source ~/.bashrc] 手动加载（仅需执行一次）；\n\n在脚本执行完毕后，您可以通过执行 [sudo do-release-upgrade] 升级 Ubuntu 到更新版本。\n\n已经准备好了？请选中 [我已知晓] 继续，否则请选中 [暂不执行] 退出。" --yes-button "我已知晓" --no-button "暂不执行" --fullbuttons 20 90) then
     # Pre-install and update.
     sudo apt update -y
     sudo apt upgrade -y
 
-    # Configure Microsoft Edge Dev sources.
-    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-    sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-    sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
-    sudo rm microsoft.gpg
-
     # Install and remove some compoments.
     sudo apt update -y
-    sudo apt install -y vim git build-essential microsoft-edge-dev gedit fonts-roboto fonts-noto mesa-utils zip neofetch
+    sudo apt install -y vim git build-essential gedit fonts-roboto fonts-noto mesa-utils zip neofetch
     sudo apt remove snapd -y
     git --version
     zip --version
@@ -52,9 +46,9 @@ if (whiptail --title "重要！需要您留意的事项" --yesno "该远程脚�
 
     # Configure nvm (Node version manager).
     cd ~/
-    git clone https://hub.fastgit.org/nvm-sh/nvm.git .nvm
+    git clone https://hub.fastgit.xyz/nvm-sh/nvm.git .nvm
     cd ~/.nvm
-    git checkout v0.38.0
+    git checkout v0.39.1
     . ./nvm.sh
 
     echo '    
